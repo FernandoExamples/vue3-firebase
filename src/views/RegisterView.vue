@@ -8,11 +8,17 @@
 
   const email = ref('fernando@gmail.com')
   const password = ref('123123')
+  const loading = ref(false)
 
-  const handleSubmit = () => {
-    userStore.registerWithEmailAndPassword(email.value, password.value).then(() => {
+  const handleSubmit = async () => {
+    loading.value = true
+    try {
+      await userStore.registerWithEmailAndPassword(email.value, password.value)
       router.replace('/')
-    })
+    } catch (error: any) {
+      console.log(error.message)
+    }
+    loading.value = false
   }
 </script>
 
@@ -21,6 +27,6 @@
   <form @submit.prevent="handleSubmit">
     <input type="text" v-model.trim="email" placeholder="Ingresa tu email" required />
     <input type="password" v-model.trim="password" placeholder="Ingresa tu contraseña" required />
-    <button type="submit">Registrarse</button>
+    <button type="submit" :disabled="loading">Registrarse</button>
   </form>
 </template>
