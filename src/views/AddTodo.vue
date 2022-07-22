@@ -18,6 +18,7 @@
 </script>
 
 <template>
+  <h3>Agregar Nueva Tarea</h3>
   <form @submit.prevent="handleSubmit">
     <input type="text" placeholder="Título" v-model="title" />
     <br />

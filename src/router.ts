@@ -25,6 +25,11 @@ const router = createRouter({
       name: 'todo.create',
       component: () => import('./views/AddTodo.vue'),
     },
+    {
+      path: '/edit-todo/:id',
+      name: 'todo.edit',
+      component: () => import('./views/EditTodo.vue'),
+    },
   ],
 })
 
