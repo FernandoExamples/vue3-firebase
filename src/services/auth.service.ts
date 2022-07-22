@@ -7,7 +7,7 @@ import {
   AuthErrorCodes,
   onAuthStateChanged,
 } from 'firebase/auth'
-export class AuthService {
+class AuthService {
   async registerWithEmailAndPassword(email: string, password: string): Promise<User> {
     try {
       const { user } = await createUserWithEmailAndPassword(auth, email, password)
@@ -45,6 +45,20 @@ export class AuthService {
   async listenToAuthStateChange(listener: (user: User | null) => void) {
     onAuthStateChanged(auth, (user) => {
       listener(user ? { uid: user.uid, email: user.email! } : null)
+    })
+  }
+
+  getCurrentUser() {
+    return new Promise<User | null>((resolve, reject) => {
+      const unsuscribe = onAuthStateChanged(
+        auth,
+        (user) => {
+          if (!user) return resolve(null)
+          resolve({ uid: user.uid, email: user.email! })
+        },
+        (e) => reject(e)
+      )
+      unsuscribe()
     })
   }
 }

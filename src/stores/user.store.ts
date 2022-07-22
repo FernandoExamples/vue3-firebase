@@ -23,11 +23,6 @@ export const useUserStore = defineStore({
       this.user = user
     },
 
-    async logout() {
-      await authService.logout()
-      this.user = null
-    },
-
     listenToAuthState() {
       authService.listenToAuthStateChange((user) => {
         this.user = user

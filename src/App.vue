@@ -1,15 +1,20 @@
 <script setup lang="ts">
   import { RouterView, useRouter } from 'vue-router'
+  import { useTodoStore } from './stores/todos.store'
   import { useUserStore } from './stores/user.store'
+  import { authService } from './services/auth.service'
 
   const userStore = useUserStore()
+  const todoStore = useTodoStore()
   const router = useRouter()
 
   const logout = () => {
-    userStore
+    authService
       .logout()
       .then(() => {
         router.replace('/login')
+        userStore.$reset()
+        todoStore.$reset()
       })
       .catch((error) => {
         console.log(error.message)
