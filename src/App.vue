@@ -25,12 +25,20 @@
 </script>
 
 <template>
-  <h1>App</h1>
-  <nav>
-    <router-link to="/" v-if="userStore.user">Home | </router-link>
-    <router-link to="/login" v-if="!userStore.user">Login | </router-link>
-    <router-link to="/register" v-if="!userStore.user">Register | </router-link>
-    <button @click="logout" v-if="userStore.user">Logout</button>
-  </nav>
-  <RouterView />
+  <a-layout>
+    <a-layout-header>
+      <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
+        <a-menu-item key="1" v-if="userStore.user"><router-link to="/">Home</router-link></a-menu-item>
+        <a-menu-item key="2" v-if="!userStore.user"><router-link to="/login">Login</router-link></a-menu-item>
+        <a-menu-item key="3" v-if="!userStore.user"><router-link to="/register">Register</router-link></a-menu-item>
+        <a-menu-item key="3" v-if="userStore.user">
+          <a-button type="text" @click="logout" style="color: #fff">Logout</a-button>
+        </a-menu-item>
+      </a-menu>
+    </a-layout-header>
+    <a-layout-content style="padding: 3rem;">
+      <RouterView />
+    </a-layout-content>
+    <a-layout-footer style="position: fixed; bottom: 0; right: 0; left: 0;">Footer</a-layout-footer>
+  </a-layout>
 </template>

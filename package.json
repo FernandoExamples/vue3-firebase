@@ -9,8 +9,10 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "ant-design-vue": "^3.3.0-beta.2",
     "firebase": "^9.9.0",
     "pinia": "^2.0.16",
+    "unplugin-vue-components": "^0.21.1",
     "vue": "^3.2.37",
     "vue-router": "^4.1.2"
   },

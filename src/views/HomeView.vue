@@ -20,12 +20,20 @@
   <h1>Hola : {{ user?.email }}</h1>
   <h3>Tus Tareas:</h3>
   <router-link :to="{ name: 'todo.create' }">Agregar tarea</router-link>
-  <ul>
-    <li v-for="todo in todoStore.todos" :key="todo.id">
-      <p>{{ todo.title }}:</p>
-      <p>{{ todo.description }}</p>
-      <button @click="deleteTodo(todo)">Eliminar</button> |
-      <router-link :to="{ name: 'todo.edit', params: { id: todo.id } }">Actualizar</router-link>
-    </li>
-  </ul>
+
+  <a-list item-layout="horizontal" :data-source="todoStore.todos">
+    <template #renderItem="{ item }">
+      <a-list-item>
+        <a-list-item-meta :description="item.description">
+          <template #title>
+            <p>{{ item.title }}</p>
+          </template>
+        </a-list-item-meta>
+        <a-button @click="deleteTodo(item)">Eliminar</a-button>
+        <a-button>
+          <router-link :to="{ name: 'todo.edit', params: { id: item.id } }">Actualizar</router-link>
+        </a-button>
+      </a-list-item>
+    </template>
+  </a-list>
 </template>

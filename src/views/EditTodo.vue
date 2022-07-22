@@ -40,11 +40,9 @@
 <template>
   <h3>Actualizar Tarea</h3>
 
-  <form @submit.prevent="handleSubmit" v-if="editedTodo">
-    <input type="text" placeholder="Título" v-model="title" />
-    <br />
-    <textarea cols="30" rows="10" placeholder="Descripción" v-model="description"></textarea>
-    <br />
-    <button type="submit">Actualizar</button>
-  </form>
+  <a-form @submit.prevent="handleSubmit" v-if="editedTodo">
+    <a-input type="text" placeholder="Título" v-model:value="title" />
+    <a-textarea cols="30" :rows="10" placeholder="Descripción" v-model:value="description"></a-textarea>
+    <a-button html-type="submit">Actualizar</a-button>
+  </a-form>
 </template>
