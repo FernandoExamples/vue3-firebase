@@ -1,6 +1,6 @@
 import type { Todo } from '@/entities/todo'
 import { db, auth } from '@/plugins/firebase'
-import { collection, getDocs, query, where } from 'firebase/firestore/lite'
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore/lite'
 
 class TodoService {
   async fetchTodos() {
@@ -12,6 +12,11 @@ class TodoService {
       uid: auth.currentUser!.uid,
     }))
     return todos
+  }
+
+  async addTodo(todo: Todo): Promise<Todo> {
+    const newTodo = await addDoc(collection(db, 'todos'), todo)
+    return { id: newTodo.id, ...todo }
   }
 }
 

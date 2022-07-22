@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from './views/HomeView.vue'
 import { authService } from '@/services/auth.service'
 
 const router = createRouter({
@@ -13,12 +13,17 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/LoginView.vue'),
+      component: () => import('./views/LoginView.vue'),
     },
     {
       path: '/register',
       name: 'register',
-      component: () => import('../views/RegisterView.vue'),
+      component: () => import('./views/RegisterView.vue'),
+    },
+    {
+      path: '/add-todo',
+      name: 'todo.create',
+      component: () => import('./views/AddTodo.vue'),
     },
   ],
 })

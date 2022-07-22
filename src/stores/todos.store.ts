@@ -18,5 +18,10 @@ export const useTodoStore = defineStore({
       console.log(todos)
       this.todos = todos
     },
+
+    async addTodo(todo: Todo) {
+      const newTodo = await todoService.addTodo(todo)
+      this.todos.push(newTodo)
+    },
   },
 })
