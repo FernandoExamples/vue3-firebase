@@ -38,14 +38,17 @@
   <a-layout>
     <a-layout-header>
       <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }" v-model:selectedKeys="selectedKeys">
-        <a-menu-item key="home" v-if="userStore.user">
-          <router-link to="/">Home</router-link>
-        </a-menu-item>
         <a-menu-item key="login" v-if="!userStore.user">
           <router-link to="/login">Login</router-link>
         </a-menu-item>
         <a-menu-item key="register" v-if="!userStore.user">
           <router-link to="/register">Register</router-link>
+        </a-menu-item>
+        <a-menu-item key="home" v-if="userStore.user">
+          <router-link to="/">Home</router-link>
+        </a-menu-item>
+        <a-menu-item key="profile.edit" v-if="userStore.user">
+          <router-link to="/profile">Perfil</router-link>
         </a-menu-item>
         <a-menu-item key="logout" v-if="userStore.user">
           <a-button type="text" @click="logout" style="color: #fff">Logout</a-button>

@@ -1,5 +1,6 @@
 import type { User } from '@/entities/user'
 import { authService } from '@/services/auth.service'
+import { userService } from '@/services/users.service'
 import { defineStore } from 'pinia'
 
 interface State {
@@ -15,11 +16,13 @@ export const useUserStore = defineStore({
   actions: {
     async registerWithEmailAndPassword(email: string, password: string) {
       const user = await authService.registerWithEmailAndPassword(email, password)
+      await userService.upsertUser(user)
       this.user = user
     },
 
     async signInWithEmailAndPassword(email: string, password: string) {
       const user = await authService.signInWithEmailAndPassword(email, password)
+      await userService.upsertUser(user)
       this.user = user
     },
 
