@@ -7,9 +7,6 @@
   const todoStore = useTodoStore()
 
   const deleteTodo = (todo: Todo) => {
-    const confirmation = confirm('Estas seguro?')
-    if (!confirmation) return
-
     todoStore.deleteTodo(todo.id!)
   }
 
@@ -29,7 +26,9 @@
             <p>{{ item.title }}</p>
           </template>
         </a-list-item-meta>
-        <a-button @click="deleteTodo(item)">Eliminar</a-button>
+        <a-popconfirm title="Estas seguro?" ok-text="Sí" cancel-text="No" @confirm="deleteTodo(item)">
+          <a-button>Eliminar</a-button>
+        </a-popconfirm>
         <a-button>
           <router-link :to="{ name: 'todo.edit', params: { id: item.id } }">Actualizar</router-link>
         </a-button>

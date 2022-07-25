@@ -22,6 +22,7 @@ declare module '@vue/runtime-core' {
     AListItemMeta: typeof import('ant-design-vue/es')['ListItemMeta']
     AMenu: typeof import('ant-design-vue/es')['Menu']
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
+    APopconfirm: typeof import('ant-design-vue/es')['Popconfirm']
     ARow: typeof import('ant-design-vue/es')['Row']
     ASpace: typeof import('ant-design-vue/es')['Space']
     ATextarea: typeof import('ant-design-vue/es')['Textarea']
